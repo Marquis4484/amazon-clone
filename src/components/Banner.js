@@ -12,7 +12,7 @@ function Banner() {
             showStatus={false}
             showIndicators={false}
             showThumbs={false}
-            interva={5000}
+            interval={5000}
          >
             <div>
                <img
@@ -22,7 +22,7 @@ function Banner() {
                />
             </div>
             <div>
-               <img loading="lazy" src="assets/game.png" alt="game" />
+               <img loading="lazy" src="assets\game.png" alt="game" />
             </div>
             <div>
                <img

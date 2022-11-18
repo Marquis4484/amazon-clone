@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
-import { StarIcon, CurrencyDollarIcon } from "@heroicons/react/24/solid";
+import { StarIcon } from "@heroicons/react/24/solid";
+import Currency from "react-currency-formatter";
 
 const MAX_RATING = 5;
 const MIN_RATING = 1;
@@ -9,10 +10,12 @@ function Product({ id, title, price, description, category, image }) {
    const [rating] = useState(
       Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
    );
+
    const [hasPrime] = useState(Math.random() < 0.5);
+
    return (
       <div className="relative flex flex-col m-5 bg-white z-30 p-10">
-         <p className="absplute top-2 right-2 text-xs italic text-gray-400">
+         <p className="absolute top-2 right-2 text-xs italic text-gray-400">
             {category}
          </p>
          <Image src={image} height={200} width={200} objectFit="contain" />
@@ -21,14 +24,13 @@ function Product({ id, title, price, description, category, image }) {
             {Array(rating)
                .fill()
                .map((_, i) => (
-                  <StarIcon className="h-5" />
+                  <StarIcon className="h-5 text-yellow-500" />
                ))}
          </div>
          <p className="text-xs my-2 line-clamp-2">{description}</p>
-         <span className="mb-5">
-            <CurrencyDollarIcon className="h-5" />
-            {price}
-         </span>
+         <div>
+            <Currency quantity={price} currency="USD" />
+         </div>
          {hasPrime && (
             <div className="flex items-center space-x-2 -mt-5">
                <img
