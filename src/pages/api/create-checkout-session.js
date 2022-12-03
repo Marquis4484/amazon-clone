@@ -3,10 +3,9 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 export default async (req, res) => {
    const { items, email } = req.body;
 
-   console.log(items);
-   console.log(email);
+   // console.log(items);
+   // console.log(email);
    const transformedItems = items.map((item) => ({
-      description: item.description,
       quantity: 1,
       price_data: {
          currency: "usd",
@@ -14,16 +13,29 @@ export default async (req, res) => {
          product_data: {
             name: item.title,
             images: [item.image],
+            description: item.description,
          },
       },
    }));
 
    const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      shipping_rates: ["shr_1MAEYLGMBWPfG8y5Jub28nj2"],
       shipping_address_collection: {
          allowed_countries: ["US", "CA", "GB"],
       },
+      shipping_options: [
+         {
+            shipping_rate_data: {
+               type: "fixed_amount",
+               fixed_amount: { amount: 599, currency: "usd" },
+               display_name: "Free shipping",
+               delivery_estimate: {
+                  minimum: { unit: "business_day", value: 1 },
+                  maximum: { unit: "business_day", value: 2 },
+               },
+            },
+         },
+      ],
       line_items: transformedItems,
       mode: "payment",
       success_url: `${process.env.HOST}/success`,
