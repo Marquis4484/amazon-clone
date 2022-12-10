@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import moment from "moment";
 import db from "../../firebase";
 import Order from "../components/Order";
+import { getSession } from "next-auth/react";
 
 function Orders({ orders }) {
    const { data: session } = useSession();
@@ -62,12 +63,12 @@ export async function getServerSideProps(context) {
    const stripeOrders = await db
       .collection("users")
       .doc(session.user.email)
-      .collection("oreder")
+      .collection("order")
       .orderBy("timestamp", "desc")
       .get();
 
    const orders = await Promise.all(
-      stripeOrder.docs.map(async (order) => ({
+      stripeOrders.docs.map(async (order) => ({
          id: order.id,
          amount: order.data().amount,
          amountShipping: order.data().amount_shipping,

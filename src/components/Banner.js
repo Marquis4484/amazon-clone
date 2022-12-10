@@ -22,7 +22,7 @@ function Banner() {
                />
             </div>
             <div>
-               <img loading="lazy" src="assets\game.png" alt="game" />
+               <img loading="lazy" src="/game.png" alt="game" />
             </div>
             <div>
                <img

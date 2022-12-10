@@ -14,7 +14,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const endpointSecret = process.env.STRIPE_SIGNING_SECRET;
 
-const fufillOrder = async (session) => {
+const fulfillOrder = async (session) => {
    return app
       .firestore()
       .collection("users")
@@ -31,7 +31,7 @@ const fufillOrder = async (session) => {
          console.log(`SUCCESS: Order ${session.id} had been added to the DB`);
       });
 };
-
+// Establishing a connection to stripe
 export default async (req, res) => {
    if (req.method === "POST") {
       const requestBuffer = await buffer(req);
@@ -39,7 +39,7 @@ export default async (req, res) => {
       const sig = req.headers["stripe-signature"];
 
       let event;
-      // verify that event posted came from stripe
+      // verifying that event posted came from stripe
       try {
          event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
       } catch (err) {
