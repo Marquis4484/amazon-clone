@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
    const stripeOrders = await db
       .collection("users")
       .doc(session.user.email)
-      .collection("order")
+      .collection("orders")
       .orderBy("timestamp", "desc")
       .get();
 

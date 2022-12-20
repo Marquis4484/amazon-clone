@@ -24,7 +24,7 @@ const fulfillOrder = async (session) => {
       .set({
          amount: session.amount_total / 100,
          amount_shipping: session.total_details.amount_shipping / 100,
-         images: JSON.parse(session.metadata.iamges),
+         images: JSON.parse(session.metadata.images),
          timestamp: admin.firestore.FieldValue.serverTimestamp(),
       })
       .then(() => {
@@ -34,12 +34,12 @@ const fulfillOrder = async (session) => {
 // Establishing a connection to stripe
 export default async (req, res) => {
    if (req.method === "POST") {
-      const requestBuffer = await buffer(req);
+      const requestBuffer = await buffer(req); //generates certificate
       const payload = requestBuffer.toString();
       const sig = req.headers["stripe-signature"];
 
       let event;
-      // verifying that event posted came from stripe
+      // verifying that the event posted came from stripe
       try {
          event = stripe.webhooks.constructEvent(payload, sig, endpointSecret);
       } catch (err) {
