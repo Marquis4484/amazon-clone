@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-   items: [],
+   items: [], // global items variable
 };
 
 export const basketSlice = createSlice({

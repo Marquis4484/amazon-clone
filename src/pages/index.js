@@ -20,6 +20,7 @@ export default function Home({ products }) {
    );
 }
 
+//server side rendering to retrieve data from Fakeapi store
 export async function getServerSideProps(context) {
    const session = await getSession(context);
    const products = await fetch("https://fakestoreapi.com/products").then(
@@ -27,7 +28,7 @@ export async function getServerSideProps(context) {
    );
    return {
       props: {
-         products, // shorthand version ES6
+         products, // shorthand version ES6 from products: products
          session,
       },
    };
