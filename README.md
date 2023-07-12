@@ -11,6 +11,8 @@ This application was created with the most popular React framework Nextjs. It in
 
 I wanted to build something that would help me understand how to use Redux and Authentication. I've never utilized other providers to login users to my application before this project. I would like to thank Sonny Sangha for this project. To add onto this project, I added Github as a provider.
 
+You can view the live demo of this project here: https://www.amzn-clone.com/
+
 ## Credit
 
 https://www.youtube.com/@SonnySangha
