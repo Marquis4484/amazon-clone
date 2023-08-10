@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Currency from "react-currency-formatter";
@@ -10,11 +10,19 @@ const MIN_RATING = 1;
 
 function Product({ id, title, price, description, category, image }) {
   const dispatch = useDispatch();
-  const [rating] = useState(
-    Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
-  );
+  const [rating, setRating] = useState(1);
 
-  const [hasPrime] = useState(Math.random() < 0.5);
+  const [hasPrime, setHasPrime] = useState(true);
+
+  //   useEffect(
+  //     (() => {
+  //       setRating(
+  //         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
+  //       );
+  //       setHasPrime(Math.random() < 0.5);
+  //     },
+  //     [])
+  //   );
 
   const addItemToBasket = () => {
     const product = {
