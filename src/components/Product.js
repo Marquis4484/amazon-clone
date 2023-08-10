@@ -11,18 +11,14 @@ const MIN_RATING = 1;
 function Product({ id, title, price, description, category, image }) {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(1);
-
   const [hasPrime, setHasPrime] = useState(true);
 
-  //   useEffect(
-  //     (() => {
-  //       setRating(
-  //         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
-  //       );
-  //       setHasPrime(Math.random() < 0.5);
-  //     },
-  //     [])
-  //   );
+  useEffect(() => {
+    setRating(
+      Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
+    );
+    setHasPrime(Math.random() < 0.5);
+  }, []);
 
   const addItemToBasket = () => {
     const product = {
