@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 const MAX_RATING = 5;
 const MIN_RATING = 1;
 
+//fixed hydration error
 function Product({ id, title, price, description, category, image }) {
   const dispatch = useDispatch();
   const [rating, setRating] = useState(1);
