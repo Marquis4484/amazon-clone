@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 
 export const authOptions = {
-  // Github and google providers added
+  // Github and Google providers added
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
