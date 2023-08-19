@@ -11,7 +11,7 @@ export default function Home({ products }) {
       <Head>
         <title>Amazon Clone</title>
       </Head>
-
+      {/* Header contains next-auth functions for sign-in and sign-out */}
       <Header />
       <main className="max-w-screen-2xl mx-auto">
         <Banner />
